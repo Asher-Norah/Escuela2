@@ -68,7 +68,12 @@ export default function LoginPage() {
       localStorage.setItem('teacher', JSON.stringify(data.teacher))
 
       // Redirect to teacher dashboard
-      router.push('/teacher')
+      const role = data.role
+if (role === 'admin') {
+    router.push('/admin')
+} else {
+    router.push('/teacher')
+}
 
     } catch (err) {
       setError('Could not connect to the server. Please try again.')

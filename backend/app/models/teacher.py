@@ -30,6 +30,7 @@ class Teacher(Base):
 
     # Account status
     is_active  = Column(Boolean, default=True)        # False = account disabled
+    role = Column(String, default="teacher")  # "teacher" or "admin"
     created_at = Column(DateTime, default=datetime.utcnow)
 
     # Relationships — these let us access related data easily.

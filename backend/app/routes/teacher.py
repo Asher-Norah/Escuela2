@@ -260,6 +260,15 @@ def save_grades(
     # This will be fully implemented when we build the gradebook table
     return {"message": "Grades saved successfully", "data": data}
 
+# POST /api/teacher/grades
+@router.post("/grades", status_code=201)
+def save_grades(
+    data:    dict,
+    teacher: Teacher = Depends(get_current_teacher),
+    db:      Session = Depends(get_db)
+):
+    return {"message": "Grades saved successfully", "data": data}
+
 # DELETE /api/teacher/record-of-work/{id}
 @router.delete("/record-of-work/{entry_id}", status_code=204)
 def delete_row(

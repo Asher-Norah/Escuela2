@@ -95,14 +95,17 @@ def login(data: TeacherLogin, db: Session = Depends(get_db)):
 
     # Return the token — frontend stores this and sends it with every request
     return {
-        "access_token": create_token(teacher.id),
-        "token_type":   "bearer",
-        "teacher": {
-            "id":               teacher.id,
-            "name":             teacher.name,
-            "email":            teacher.email,
-            "subject":          teacher.subject,
-            "is_class_teacher": teacher.is_class_teacher,
-            "assigned_class":   teacher.assigned_class,
-        }
+    "access_token": create_token(teacher.id),
+    "token_type":   "bearer",
+    "role":         teacher.role,   # "teacher" or "admin"
+    "teacher": {
+        "id":               teacher.id,
+        "name":             teacher.name,
+        "email":            teacher.email,
+        "subject":          teacher.subject,
+        "role":             teacher.role,
+        "is_class_teacher": teacher.is_class_teacher,
+        "assigned_class":   teacher.assigned_class,
     }
+}
+    
